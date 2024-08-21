@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:layout_margin="8dp">
+
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Your name"
+        android:inputType="textPersonName"
+        tools:ignore="HardcodedText" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/rock_shop"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/aclonica"
+            android:text="Sale -30"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:rotation="-20"
+            tools:ignore="HardcodedText" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select item"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="15dp"
+        tools:ignore="HardcodedText" />
+
+    <Spinner
+        android:id="@+id/abSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/guitar"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center_horizontal"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/tvOrderPriceTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order price"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="15dp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvPriceTitle"
+            android:layout_below="@id/tvOrderPriceTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="50dp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvCurrency"
+            android:layout_below="@id/tvOrderPriceTitle"
+            android:layout_toEndOf="@id/tvPriceTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="5dp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvQuantityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tvOrderPriceTitle"
+            android:text="Quantity"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="150dp"
+            tools:ignore="HardcodedText" />
+
+        <android.widget.Button
+            android:id="@+id/btnMinus"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_toEndOf="@id/tvCurrency"
+            android:layout_below="@id/tvQuantityTitle"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="5dp"
+            android:text="-"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_rounded_variants"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvQuantityTitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvPriceTitle"
+            android:layout_toEndOf="@id/btnMinus"
+            android:layout_marginStart="25dp"
+            android:text="0"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <android.widget.Button
+            android:id="@+id/btnPlus"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/tvQuantityTitle"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/tvQuantityTitle1"
+            android:background="@drawable/shape_rounded_variants"
+            android:text="+"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+
+    <android.widget.Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:text="Add to Cart"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/braun"
+        tools:ignore="HardcodedText" />
+</LinearLayout>
