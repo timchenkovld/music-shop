@@ -13,14 +13,24 @@ class MainActivity : AppCompatActivity() {
         get() = _binding ?: throw IllegalStateException("ViewBinding is not initialized")
 
     private var quantity = 0
+    private var selectedInstrument: String = ""
 
-    private val instrumentPrices: Map<String, String> = mapOf(
-        "Guitar" to "200$",
-        "Piano" to "1500$",
-        "Drums" to "300$",
-        "Violin" to "500$",
-        "Flute" to "250$",
-        "Saxophone" to "700$"
+    private val instrumentPrices: Map<String, Int> = mapOf(
+        "Guitar" to 200,
+        "Piano" to 1500,
+        "Drums" to 300,
+        "Violin" to 500,
+        "Flute" to 250,
+        "Saxophone" to 700
+    )
+
+    private val instrumentImages: Map<String, Int> = mapOf(
+        "Guitar" to R.drawable.guitar,
+        "Piano" to R.drawable.piano,
+        "Drums" to R.drawable.drums,
+        "Violin" to R.drawable.violin,
+        "Flute" to R.drawable.flute,
+        "Saxophone" to R.drawable.saxophone
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,15 +52,13 @@ class MainActivity : AppCompatActivity() {
     private fun setupSpinner() {
         val instruments = instrumentPrices.keys.toList()
 
-        val adapter = ArrayAdapter(
+        binding.abSpinner.adapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_item,
             instruments
         ).apply {
             setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         }
-
-        binding.abSpinner.adapter = adapter
 
         binding.abSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -59,38 +67,37 @@ class MainActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                val selectedInstrument = parent.getItemAtPosition(position) as String
-                updatePrice(selectedInstrument)
+                selectedInstrument = parent.getItemAtPosition(position) as String
+                updatePrice()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
     }
 
-    private fun updatePrice(instrument: String) {
-        val price = instrumentPrices[instrument] ?: "0"
-        binding.tvPriceTitle.text = price
+    private fun updatePrice() {
+        val pricePerUnit = instrumentPrices[selectedInstrument] ?: 0
+        val totalPrice = pricePerUnit * quantity
+        binding.tvPriceTitle.text = totalPrice.toString()
+
+        val imageResId = instrumentImages[selectedInstrument]
+        if (imageResId != null) {
+            binding.ivMusicInstrumentPicture.setImageResource(imageResId)
+        }
     }
-
-//    private fun setupSpinner() {
-//        val instruments = listOf("Guitar", "Piano", "Drums", "Violin", "Flute", "Saxophone")
-//
-//        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, instruments)
-//            .apply { setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) }
-//        binding.abSpinner.adapter = adapter
-//    }
-
 
     private fun decrementQuantity() {
         if (quantity > 0) {
             quantity--
             binding.tvQuantityTitle1.text = quantity.toString()
+            updatePrice()
         }
     }
 
     private fun incrementQuantity() {
         quantity++
         binding.tvQuantityTitle1.text = quantity.toString()
+        updatePrice()
     }
 
     override fun onDestroy() {
