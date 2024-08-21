@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     private val binding
         get() = _binding ?: throw IllegalStateException("ViewBinding is not initialized")
 
-    private var quantity = 0
+    private var quantity: Int = 0
     private var selectedInstrument: String = ""
 
     private val instrumentPrices: Map<String, Int> = mapOf(
